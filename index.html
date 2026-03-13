@@ -1,0 +1,654 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Educadorxs MDP Educación Popular</title>
+  <style>
+    :root{
+      --sky:#8FD3EE;
+      --sky-deep:#63BFE2;
+      --yellow:#F2D250;
+      --charcoal:#4A474A;
+      --offwhite:#F8FAFC;
+      --soft:#E9EEF2;
+      --white:#ffffff;
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, var(--offwhite) 0%, #dff3fb 100%);
+      color: var(--charcoal);
+    }
+
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(248,250,252,.95);
+      border-bottom: 1px solid var(--soft);
+      backdrop-filter: blur(8px);
+    }
+
+    .container{
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    .header-inner{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      padding:16px 0;
+      flex-wrap:wrap;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    .logo-wrap{
+      width:64px;
+      height:64px;
+      border-radius:50%;
+      overflow:hidden;
+      border:4px solid var(--sky-deep);
+      background:white;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:bold;
+      color:var(--charcoal);
+    }
+
+    .logo-wrap img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    h1{
+      margin:0;
+      font-size:30px;
+      line-height:1.1;
+    }
+
+    .subtitle{
+      margin:4px 0 0;
+      opacity:.8;
+      font-size:15px;
+    }
+
+    .tabs{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    .tab-btn{
+      border:none;
+      border-radius:999px;
+      padding:10px 16px;
+      font-weight:700;
+      cursor:pointer;
+      background:rgba(255,255,255,.6);
+      color:var(--charcoal);
+    }
+
+    .tab-btn.active{
+      background:var(--yellow);
+      box-shadow:0 4px 12px rgba(0,0,0,.12);
+    }
+
+    main{
+      padding:28px 0 40px;
+    }
+
+    .hero{
+      display:grid;
+      grid-template-columns: 1.4fr .9fr;
+      gap:20px;
+      margin-bottom:24px;
+    }
+
+    .card{
+      background:var(--white);
+      border:1px solid var(--soft);
+      border-radius:24px;
+      padding:24px;
+      box-shadow:0 8px 24px rgba(0,0,0,.08);
+    }
+
+    .card.sky{
+      background:var(--sky);
+      border-color:var(--sky-deep);
+    }
+
+    .pill{
+      display:inline-block;
+      background:var(--yellow);
+      color:var(--charcoal);
+      border-radius:999px;
+      padding:6px 10px;
+      font-size:12px;
+      font-weight:800;
+      margin-bottom:14px;
+    }
+
+    .hero h2{
+      margin:0 0 12px;
+      font-size:38px;
+      line-height:1.05;
+    }
+
+    .hero p{
+      margin:0;
+      line-height:1.7;
+      font-size:18px;
+    }
+
+    .grid{
+      display:grid;
+      gap:18px;
+    }
+
+    .grid-3{
+      grid-template-columns:repeat(3,1fr);
+    }
+
+    .grid-2{
+      grid-template-columns:repeat(2,1fr);
+    }
+
+    .section-number{
+      width:40px;
+      height:40px;
+      border-radius:16px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:900;
+      margin-bottom:14px;
+    }
+
+    .section-title{
+      font-size:19px;
+      margin:0 0 12px;
+    }
+
+    .card p, .card li{
+      font-size:14px;
+      line-height:1.65;
+    }
+
+    ul{
+      padding-left:18px;
+      margin:10px 0 0;
+    }
+
+    .highlight{
+      background:#FFF7D4;
+      padding:12px;
+      border-radius:16px;
+      font-weight:600;
+      margin-top:12px;
+    }
+
+    .list-box{
+      display:flex;
+      gap:14px;
+      border-radius:18px;
+      padding:14px;
+      margin-bottom:10px;
+    }
+
+    .list-num{
+      width:36px;
+      height:36px;
+      border-radius:12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:900;
+      flex-shrink:0;
+    }
+
+    .change-card{
+      border-radius:24px;
+      padding:20px;
+      border:1px solid var(--soft);
+      background:white;
+      box-shadow:0 8px 24px rgba(0,0,0,.06);
+    }
+
+    .change-tags{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-bottom:10px;
+    }
+
+    .tag{
+      padding:6px 12px;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:700;
+      background:#F1F5F9;
+    }
+
+    .tag.yellow{
+      background:var(--yellow);
+    }
+
+    .hidden{
+      display:none;
+    }
+
+    footer{
+      border-top:1px solid var(--soft);
+      padding:20px 0 30px;
+      font-size:14px;
+      opacity:.8;
+    }
+
+    @media (max-width: 980px){
+      .hero{
+        grid-template-columns:1fr;
+      }
+      .grid-3{
+        grid-template-columns:repeat(2,1fr);
+      }
+    }
+
+    @media (max-width: 680px){
+      h1{font-size:24px}
+      .hero h2{font-size:30px}
+      .grid-3,.grid-2{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="logo-wrap">
+          <!-- Si después querés, acá podés reemplazar por tu logo -->
+          E
+        </div>
+        <div>
+          <h1>Educadorxs MDP Educación Popular</h1>
+          <p class="subtitle">Guía interactiva sobre la Propuesta Curricular EPJA para FinES / CENS</p>
+        </div>
+      </div>
+
+      <div class="tabs">
+        <button class="tab-btn active" onclick="showTab('resumen', this)">Resumen general</button>
+        <button class="tab-btn" onclick="showTab('claves', this)">10 claves</button>
+        <button class="tab-btn" onclick="showTab('cambios', this)">Cambios en el aula</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="card">
+        <div class="pill">EPJA · FinES · CENS</div>
+        <h2>Una lectura clara, docente y territorial</h2>
+        <p>
+          Esta app resume los puntos pedagógicos más importantes del diseño curricular de la EPJA,
+          con especial atención a las dudas frecuentes de FinES: orientación del título, estructura curricular,
+          contenidos, evaluación y cambios reales para la práctica docente.
+        </p>
+      </div>
+
+      <div class="card sky">
+        <h3 style="margin-top:0; font-size:24px;">Aclaración clave para FinES</h3>
+        <p>
+          La orientación del título <strong>no la elige el estudiante ni la define la sede</strong>.
+          Depende del <strong>CENS que certifica la comisión</strong>.
+          Por eso muchas comisiones FinES otorgan el título de <strong>Bachiller en Ciencias Sociales</strong>.
+        </p>
+      </div>
+    </section>
+
+    <section id="resumen-tab">
+      <div class="grid grid-3">
+        <div class="card">
+          <div class="section-number" style="background:var(--sky);">1</div>
+          <h3 class="section-title">Sentido de la educación de jóvenes y adultos</h3>
+          <p>La EPJA parte del derecho a la educación a lo largo de toda la vida y reconoce trayectorias educativas discontinuas, atravesadas por trabajo, familia y distintas realidades sociales.</p>
+          <ul>
+            <li>La educación es un derecho social.</li>
+            <li>Se reconocen los saberes previos y las experiencias de vida.</li>
+            <li>Se respeta el ritmo de aprendizaje de cada estudiante.</li>
+            <li>Se promueve pensamiento crítico, justicia social y ciudadanía.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="section-number" style="background:var(--yellow);">2</div>
+          <h3 class="section-title">¿Quiénes son los estudiantes?</h3>
+          <p>Son jóvenes, adultas y adultos con recorridos no lineales. Muchas veces trabajan, tienen responsabilidades familiares o retoman la escuela después de varios años.</p>
+          <ul>
+            <li>Tienen saberes laborales, sociales y comunitarios.</li>
+            <li>No parten de cero: traen experiencia y conocimiento.</li>
+            <li>Necesitan propuestas contextualizadas y flexibles.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="section-number" style="background:var(--sky);">3</div>
+          <h3 class="section-title">Rol docente en la EPJA</h3>
+          <p>La tarea docente consiste en recuperar saberes previos, habilitar el diálogo y construir propuestas que relacionen los contenidos con la vida cotidiana y el territorio.</p>
+          <ul>
+            <li>Reconocer la heterogeneidad del grupo.</li>
+            <li>Trabajar desde una pedagogía participativa.</li>
+            <li>Articular con organizaciones y espacios comunitarios.</li>
+            <li>Construir mediaciones significativas para aprender.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="section-number" style="background:var(--yellow);">4</div>
+          <h3 class="section-title">Propósitos de la secundaria EPJA</h3>
+          <p>La propuesta busca que los estudiantes se reconozcan como sujetos de derecho, desarrollen pensamiento crítico y participen activamente en la vida social.</p>
+          <ul>
+            <li>Articular saberes escolares con experiencias de vida.</li>
+            <li>Fortalecer la formación para el trabajo.</li>
+            <li>Promover respeto por la diversidad cultural y social.</li>
+            <li>Consolidar ciudadanía democrática.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="section-number" style="background:var(--sky);">5</div>
+          <h3 class="section-title">Organización curricular</h3>
+          <p>La estructura curricular es modular y flexible, pensada para acompañar trayectorias diversas.</p>
+          <ul>
+            <li>Formación Básica: común a todas las orientaciones.</li>
+            <li>Formación Orientada: profundiza en un área específica.</li>
+            <li>Ciclo de Vinculación Profesional: optativo y ligado al mundo laboral.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="section-number" style="background:var(--yellow);">6</div>
+          <h3 class="section-title">Orientaciones del nivel secundario</h3>
+          <p>Las orientaciones previstas son: Ciencias Sociales, Ciencias Naturales, Economía y Administración, Informática, Artes, Turismo y Agro y Ambiente.</p>
+          <ul>
+            <li>En FinES la orientación no la elige el estudiante.</li>
+            <li>La define el CENS que certifica la comisión.</li>
+            <li>La sede donde se cursa no determina el título.</li>
+            <li>En muchas comisiones FinES el título suele ser Bachiller en Ciencias Sociales.</li>
+          </ul>
+          <div class="highlight">
+            Ejemplo: si una comisión FinES depende de un CENS con orientación en Ciencias Sociales,
+            el título será Bachiller en Ciencias Sociales, aunque las clases se dicten en una sede barrial.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="section-number" style="background:var(--sky);">7</div>
+          <h3 class="section-title">Ejes transversales</h3>
+          <p>Toda la propuesta curricular se atraviesa con cinco ejes centrales.</p>
+          <ul>
+            <li>Ambiente</li>
+            <li>Culturas</li>
+            <li>Educación Sexual Integral</li>
+            <li>Trabajo</li>
+            <li>Prácticas ciudadanas</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="section-number" style="background:var(--yellow);">8</div>
+          <h3 class="section-title">Áreas curriculares</h3>
+          <p>Las áreas principales son Prácticas del Lenguaje, Matemática, Ciencias Sociales, Ciencias Naturales, Educación Artística y Educación Física.</p>
+          <p>Cada una aporta herramientas para comprender problemas sociales, culturales, laborales y ambientales.</p>
+        </div>
+
+        <div class="card">
+          <div class="section-number" style="background:var(--sky);">9</div>
+          <h3 class="section-title">Cómo se organiza el aprendizaje</h3>
+          <p>La propuesta no se reduce a dar contenidos sueltos. Se trabaja desde contextos problematizadores, núcleos conceptuales y proyectos de acción.</p>
+          <ul>
+            <li>Contextos problematizadores: problemas del entorno o de la vida cotidiana.</li>
+            <li>Núcleos conceptuales: ideas clave para comprender esas problemáticas.</li>
+            <li>Proyectos de acción: actividades que vinculan escuela, territorio e intervención social.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="section-number" style="background:var(--yellow);">10</div>
+          <h3 class="section-title">Evaluación</h3>
+          <p>La evaluación se entiende como un proceso continuo, formativo y contextualizado. No se trata solo de calificar, sino de acompañar trayectorias.</p>
+          <ul>
+            <li>Reconocer avances individuales.</li>
+            <li>Valorar saberes previos.</li>
+            <li>Incluir instancias colaborativas.</li>
+            <li>Favorecer aprendizaje y acreditación.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="section-number" style="background:var(--sky);">11</div>
+          <h3 class="section-title">Trabajo con la comunidad</h3>
+          <p>La EPJA promueve la articulación con organizaciones sociales, espacios comunitarios, instituciones del territorio y ámbitos laborales.</p>
+          <p>La escuela es parte de la comunidad y debe dialogar con ella.</p>
+        </div>
+
+        <div class="card">
+          <div class="section-number" style="background:var(--yellow);">12</div>
+          <h3 class="section-title">Enfoque pedagógico</h3>
+          <p>La propuesta se apoya en la educación popular y la pedagogía territorial.</p>
+          <ul>
+            <li>Inclusión</li>
+            <li>Justicia social</li>
+            <li>Participación comunitaria</li>
+            <li>Transformación social</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="claves-tab" class="hidden">
+      <div class="grid grid-2">
+        <div class="card">
+          <h2 style="margin-top:0;">10 claves del diseño curricular EPJA</h2>
+
+          <div class="list-box" style="background:#EEF9FE;">
+            <div class="list-num" style="background:var(--sky-deep);">1</div>
+            <div>La EPJA está pensada para trayectorias diversas y no lineales.</div>
+          </div>
+
+          <div class="list-box" style="background:#FFF8DE;">
+            <div class="list-num" style="background:var(--yellow);">2</div>
+            <div>El estudiante adulto trae saberes valiosos que deben recuperarse.</div>
+          </div>
+
+          <div class="list-box" style="background:#EEF9FE;">
+            <div class="list-num" style="background:var(--sky-deep);">3</div>
+            <div>La enseñanza debe partir de problemas reales.</div>
+          </div>
+
+          <div class="list-box" style="background:#FFF8DE;">
+            <div class="list-num" style="background:var(--yellow);">4</div>
+            <div>La propuesta es modular, no una suma de materias aisladas.</div>
+          </div>
+
+          <div class="list-box" style="background:#EEF9FE;">
+            <div class="list-num" style="background:var(--sky-deep);">5</div>
+            <div>Se promueve el trabajo con proyectos.</div>
+          </div>
+
+          <div class="list-box" style="background:#FFF8DE;">
+            <div class="list-num" style="background:var(--yellow);">6</div>
+            <div>Los ejes transversales atraviesan todas las áreas.</div>
+          </div>
+
+          <div class="list-box" style="background:#EEF9FE;">
+            <div class="list-num" style="background:var(--sky-deep);">7</div>
+            <div>La evaluación debe acompañar procesos.</div>
+          </div>
+
+          <div class="list-box" style="background:#FFF8DE;">
+            <div class="list-num" style="background:var(--yellow);">8</div>
+            <div>La escuela debe trabajar con el territorio.</div>
+          </div>
+
+          <div class="list-box" style="background:#EEF9FE;">
+            <div class="list-num" style="background:var(--sky-deep);">9</div>
+            <div>En FinES la orientación depende del CENS que certifica.</div>
+          </div>
+
+          <div class="list-box" style="background:#FFF8DE;">
+            <div class="list-num" style="background:var(--yellow);">10</div>
+            <div>La meta no es solo el título: también ciudadanía, trabajo y transformación.</div>
+          </div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:18px;">
+          <div class="card sky">
+            <h3 style="margin-top:0;">¿Cómo saber qué título corresponde en FinES?</h3>
+            <ol style="line-height:1.8;">
+              <li>Identificar el CENS de referencia de la comisión.</li>
+              <li>Ver qué orientación tiene ese servicio educativo.</li>
+              <li>Confirmar que el título final corresponde a esa orientación.</li>
+            </ol>
+          </div>
+
+          <div class="card">
+            <h3 style="margin-top:0;">Contenidos que no hay que perder de vista</h3>
+            <ul>
+              <li>Lectura, escritura y comprensión</li>
+              <li>Cálculo y matemática en contexto</li>
+              <li>Trabajo, derechos y ciudadanía</li>
+              <li>ESI, ambiente e interculturalidad</li>
+              <li>Tecnología y cultura digital</li>
+              <li>Participación comunitaria y proyectos</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="cambios-tab" class="hidden">
+      <div class="card" style="margin-bottom:18px;">
+        <h2 style="margin-top:0;">Qué cambia realmente en la práctica docente</h2>
+        <p>
+          El diseño curricular invita a pasar de una escuela centrada en materias y contenidos aislados
+          a una escuela basada en problemas, proyectos, participación y vínculo con el territorio.
+        </p>
+      </div>
+
+      <div class="grid grid-2">
+        <div class="change-card">
+          <div class="change-tags">
+            <span class="tag">Materias aisladas</span>
+            <strong>→</strong>
+            <span class="tag yellow">Problemas y contextos</span>
+          </div>
+          <p>La propuesta invita a organizar la enseñanza a partir de problemáticas concretas del territorio y de la vida cotidiana.</p>
+        </div>
+
+        <div class="change-card">
+          <div class="change-tags">
+            <span class="tag">Contenidos abstractos</span>
+            <strong>→</strong>
+            <span class="tag yellow">Contenidos con sentido</span>
+          </div>
+          <p>Los contenidos deben vincularse con trabajo, comunidad, derechos, ambiente y experiencias reales de los estudiantes.</p>
+        </div>
+
+        <div class="change-card">
+          <div class="change-tags">
+            <span class="tag">Clase expositiva tradicional</span>
+            <strong>→</strong>
+            <span class="tag yellow">Aprendizaje participativo</span>
+          </div>
+          <p>Se promueven proyectos, debates, investigación y trabajo grupal.</p>
+        </div>
+
+        <div class="change-card">
+          <div class="change-tags">
+            <span class="tag">Estudiante como receptor</span>
+            <strong>→</strong>
+            <span class="tag yellow">Estudiante con saberes</span>
+          </div>
+          <p>La enseñanza debe partir de lo que las personas ya saben y hacen.</p>
+        </div>
+
+        <div class="change-card">
+          <div class="change-tags">
+            <span class="tag">Evaluación centrada en la nota</span>
+            <strong>→</strong>
+            <span class="tag yellow">Evaluación de proceso</span>
+          </div>
+          <p>Importa acompañar trayectorias, reconocer avances y sostener el aprendizaje.</p>
+        </div>
+
+        <div class="change-card">
+          <div class="change-tags">
+            <span class="tag">Escuela cerrada</span>
+            <strong>→</strong>
+            <span class="tag yellow">Escuela vinculada al territorio</span>
+          </div>
+          <p>Se fortalece el trabajo con organizaciones, cooperativas, sindicatos y espacios comunitarios.</p>
+        </div>
+
+        <div class="change-card">
+          <div class="change-tags">
+            <span class="tag">Trabajo rígido por disciplina</span>
+            <strong>→</strong>
+            <span class="tag yellow">Enfoque interdisciplinario</span>
+          </div>
+          <p>Las áreas dialogan para abordar temas complejos desde distintas perspectivas.</p>
+        </div>
+
+        <div class="change-card">
+          <div class="change-tags">
+            <span class="tag">Secundaria como trámite</span>
+            <strong>→</strong>
+            <span class="tag yellow">Secundaria como transformación</span>
+          </div>
+          <p>No se busca solo titular, sino ampliar derechos, ciudadanía y oportunidades.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      Educadorxs MDP Educación Popular · Material de apoyo para docentes sobre el diseño curricular EPJA.
+    </div>
+  </footer>
+
+  <script>
+    function showTab(tabName, btn) {
+      document.getElementById('resumen-tab').classList.add('hidden');
+      document.getElementById('claves-tab').classList.add('hidden');
+      document.getElementById('cambios-tab').classList.add('hidden');
+
+      document.getElementById(tabName + '-tab').classList.remove('hidden');
+
+      var buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach(function(b){
+        b.classList.remove('active');
+      });
+
+      btn.classList.add('active');
+    }
+  </script>
+</body>
+</html>
