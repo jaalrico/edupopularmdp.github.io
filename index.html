@@ -659,21 +659,23 @@
     </div>
   </footer>
 
-  <script>
-    function showTab(tabName, btn) {
-      document.getElementById('resumen-tab').classList.add('hidden');
-      document.getElementById('claves-tab').classList.add('hidden');
-      document.getElementById('cambios-tab').classList.add('hidden');
+ <script>
+  function showTab(tabName, btn) {
+    document.getElementById('resumen-tab').classList.add('hidden');
+    document.getElementById('claves-tab').classList.add('hidden');
+    document.getElementById('cambios-tab').classList.add('hidden');
+    document.getElementById('documentos-tab').classList.add('hidden');
 
-      document.getElementById(tabName + '-tab').classList.remove('hidden');
+    document.getElementById(tabName + '-tab').classList.remove('hidden');
 
-      var buttons = document.querySelectorAll('.tab-btn');
-      buttons.forEach(function(b){
-        b.classList.remove('active');
-      });
+    var buttons = document.querySelectorAll('.tab-btn');
+    buttons.forEach(function(b){
+      b.classList.remove('active');
+    });
 
-      btn.classList.add('active');
-    }
-  </script>
+    btn.classList.add('active');
+  }
+</script>
+
 </body>
 </html>
